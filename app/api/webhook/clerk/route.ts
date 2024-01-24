@@ -7,6 +7,7 @@ import { NextResponse } from "next/server"
 
 export async function POST(req: Request) {
   // You can find this in the Clerk Dashboard -> Webhooks -> choose the webhook
+  console.log("Webhook call")
   const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET
 
   if (!WEBHOOK_SECRET) {
@@ -52,10 +53,12 @@ export async function POST(req: Request) {
   }
 
   // Get the ID and type
+  console.log(evt)
   const { id } = evt.data
   const eventType = evt.type
 
   if (eventType === "user.created") {
+    console.log("hook called")
     const { id, email_addresses, image_url, first_name, last_name, username } =
       evt.data
 
@@ -97,6 +100,7 @@ export async function POST(req: Request) {
   }
 
   if (eventType === "user.deleted") {
+    console.log("nas oo")
     const { id } = evt.data
 
     const deletedUser = await deleteUser(id!)

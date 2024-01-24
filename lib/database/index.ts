@@ -17,6 +17,6 @@ export const connectToDatabase = async () => {
     })
 
   chached.conn = await chached.promise
-
+  console.log("connection vich", chached.conn)
   return chached.conn
 }
