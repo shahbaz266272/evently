@@ -1,19 +1,19 @@
-import { Document, Schema, Types, model, models } from "mongoose"
+import { Document, Schema, model, models } from "mongoose"
 
-export interface IEvents extends Document {
+export interface IEvent extends Document {
   _id: string
   title: string
   description?: string
   location?: string
-  createdAt?: Date
-  imgUrl: string
-  startDateTime?: Date
-  endDateTime?: Date
-  price?: string
-  isFree?: boolean
+  createdAt: Date
+  imageUrl: string
+  startDateTime: Date
+  endDateTime: Date
+  price: string
+  isFree: boolean
   url?: string
-  category?: { _id: string; name: string }
-  organizer?: { _id: string; firstName: string; lastName: string }
+  category: { _id: string; name: string }
+  organizer: { _id: string; firstName: string; lastName: string }
 }
 
 const EventSchema = new Schema({
@@ -21,7 +21,7 @@ const EventSchema = new Schema({
   description: { type: String },
   location: { type: String },
   createdAt: { type: Date, default: Date.now },
-  imgUrl: { type: String, required: true },
+  imageUrl: { type: String, required: true },
   startDateTime: { type: Date, default: Date.now },
   endDateTime: { type: Date, default: Date.now },
   price: { type: String },
@@ -31,6 +31,6 @@ const EventSchema = new Schema({
   organizer: { type: Schema.Types.ObjectId, ref: "User" },
 })
 
-const Event = models.Event || model("Events", EventSchema)
+const Event = models.Event || model("Event", EventSchema)
 
 export default Event
